@@ -1,0 +1,36 @@
+{
+  "name": "nefture-itw",
+  "version": "0.1.0",
+  "description": "Detection tool for Euler Hack",
+  "main": "server.ts",
+  "scripts": {
+    "start": "ts-node server.ts",
+    "script": "ts-node script.ts",
+    "dev": "nodemon server.ts"
+  },
+  "author": "Kévin Lambert",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "chalk": "^4.1.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^5.7.2",
+    "evmole": "^0.5.1",
+    "express": "^4.21.1",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.42",
+    "@types/express": "^5.0.0",
+    "@types/lodash.uniqwith": "^4.5.9",
+    "@typescript-eslint/eslint-plugin": "6.0.0",
+    "@typescript-eslint/parser": "6.0.0",
+    "eslint": "8.42.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-prettier": "5.0.0",
+    "nodemon": "^3.1.7",
+    "prettier": "3.0.0",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "^5.7.2"
+  }
+}
