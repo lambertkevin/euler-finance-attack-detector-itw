@@ -21,6 +21,7 @@ TRANSFER Liquidation Burn
 		- Liquidator
 
 Detect Liquidation:
+  - Based on potential borrow:
 	- Loop on CALL/DCALL until:
 		-> CALL should have subcalls (1)
 		-> CALL should contain a TRANSFER event from A to 0 & amount æ (token ß') (2)

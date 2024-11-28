@@ -22,8 +22,8 @@ Detect Flash Loan:
   - Loop on CALL/DCALL until
       -> msg.sender or loan recipient should call a smart contract (1)
       -> CALL should contain a TRANSFER event of asset ß where receiver is msg.sender, amount is æ, and sender is Lender (2)		
-      -> msg.sender should have code (3)
-      -> child CALL should go to msg.sender (3)
+      -> msg.sender or loan recipient should have code (3)
+      -> child CALL should go to msg.sender or loan recipient (3)
       -> child CALL should contain a TRANSFER event of asset ß where receiver is Lender and amount is >= æ (5)
  */
 export const findFlashLoan = async (

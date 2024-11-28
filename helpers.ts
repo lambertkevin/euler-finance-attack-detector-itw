@@ -53,8 +53,6 @@ function splitNesting(value: string): Array<any> {
   return result;
 }
 
-export const keccak = (data: Buffer) => data.toString('ascii');
-
 export const getParent = (
   mappedCall: MappedCall,
   key: string,
@@ -112,12 +110,10 @@ export const getMappedCalls = (
   const key = parentCall ? `${parentCall}.calls[${index}]` : 'root';
   let mappedCall = {
     ...previousMap,
-    [keccak(Buffer.from(key))]: {
+    [key]: {
       ...call,
-      parentCall: parentCall ? keccak(Buffer.from(parentCall)) : null,
-      calls: call.calls?.map((call, i) =>
-        keccak(Buffer.from(`${key}.calls[${i}]`)),
-      ),
+      parentCall: parentCall ? parentCall : null,
+      calls: call.calls?.map((call, i) => `${key}.calls[${i}]`),
     },
   };
 
