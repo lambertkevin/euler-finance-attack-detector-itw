@@ -1,4 +1,25 @@
-# Nefture Interview
+# Euler Finance Attack Detector interview
+
+## Goal of the exercise
+
+Create a system capable of detecting the [Euler Finance attack](https://www.chainalysis.com/blog/euler-finance-flash-loan-attack/) within a block, without relying on specific details of Euler tokens or the Aave/Balancer flash loan systems.
+
+The result should be provided as a simple backend service and the expected output should contain the flash loan detection, the attacker, the victims and the funds lost.
+
+## Idea
+
+Since we cannot use Aave, Balancer, or Euler-specific events (as this would limit detection to those specific contracts), the approach is to analyze the behavior of the attack at the OPCODE level. This primarily involves leveraging `CALL`/`DELEGATECALL` to detect interactions between contracts and `LOGx` to identify standard `TRANSFER` events as defined in the ERC-20 specification.
+
+We aim to detect (approximately):
+ - 1 Flash Loan (User A requests funds from a contract, receives a callback, and returns the funds to the lender by the end of the transaction.)
+ - 1 Borrow (User A approves a protocol to use one of his tokens and receives two in exchange — a debt token and an equity token.)
+ - 1 Liquidation (User B interacts with a contract; one token is burned, and the other is transferred from User A to User B.)
+ - 1 Drain (One of the users or contracts involved in these steps loses the entirety of their funds.)
+
+By detecting all these steps, we can have high confidence that a self-liquidation occurred during a flash loan.
+
+While this implementation is far from optimized for performance, you still get the expected behavior for each transaction of the attack. 
+AFAIK, no false positives were detected during the testing of this PoC.
 
 ## Installation
 
